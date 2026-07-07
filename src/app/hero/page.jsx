@@ -1,6 +1,11 @@
-import { Plus } from "lucide-react";
 
-const Hero = () => {
+import { Plus } from "lucide-react";
+import contacts from '../../../public/data/contacts.json';
+import Image from "next/image";
+const Hero = async () => {
+    // const res = await fetch("/data/contacts.json");
+    // const contacts=  await res.json();
+    // console.log(contacts);
     return (
         <div className="bg-[#F8FAFC] text-black  h-full px-10 py-10">
             <div className=" text-center space-y-5 py-5">
@@ -15,7 +20,7 @@ const Hero = () => {
             </div>
             <div className=" grid grid-cols-1 md:grid-cols-3  lg:grid-cols-4 text-center justify-items-center pt-5">
                 <div className=" bg-[#FFFFFF] w-40 h-25 flex flex-col items-center justify-center p-3" >
-                    <h3>10</h3>
+                    <h3>{contacts.length}</h3>
                     <p className=" text-sm">Total Friend</p>
                 </div >
                 <div className=" bg-[#FFFFFF] w-40 h-25 flex flex-col items-center justify-center p-3">
@@ -33,67 +38,24 @@ const Hero = () => {
             </div>
             <div className="pt-10">
                 <h3>Friends</h3>
-                <div className="bg-[#F8FAFC] grid md:grid-cols-3 lg:grid-cols-4 ">
-                    <div className="card   shadow-sm">
+                <div className="bg-[#F8FAFC] grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5">
+                    {contacts.map(contact => <div key={contact.id} className="card   shadow-sm bg-[#ffffff]">
                         <figure className="px-10 pt-10">
-                            <img
-                                src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                                alt="Shoes"
-                                className="rounded-xl" />
+                            <Image className=" rounded-full"  src={contact.picture} alt={contact.name} width={80} height={80}></Image>
                         </figure>
                         <div className="card-body items-center text-center">
-                            <h2 className="card-title">Card Title</h2>
-                            <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
-                            <div className="card-actions">
-                                <button className="btn btn-primary">Buy Now</button>
+                            <h2 className="card-title">{contact.name}</h2>
+                            <p>{contact.days_since_contact}d ago</p>
+                            <div className="card-actions flex flex-col items-center">
+                                <div className=" space-x-2">
+                                    {contact.tags.map((tag , idx) => <button className="p-2 rounded-2xl bg-[#CBFADB]" key={idx}>{tag}</button>)}
+                                </div>
+                                <button className={`btn btn-sm rounded-2xl ${contact.status==="overdue"? "bg-red-500" : contact.status==="on-track"? " bg-green-700" : " bg-yellow-600"}`}>{contact.status}</button>
                             </div>
                         </div>
-                    </div>
-                    <div className="card  shadow-sm">
-                        <figure className="px-10 pt-10">
-                            <img
-                                src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                                alt="Shoes"
-                                className="rounded-xl" />
-                        </figure>
-                        <div className="card-body items-center text-center">
-                            <h2 className="card-title">Card Title</h2>
-                            <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
-                            <div className="card-actions">
-                                <button className="btn btn-primary">Buy Now</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="card shadow-sm">
-                        <figure className="px-10 pt-10">
-                            <img
-                                src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                                alt="Shoes"
-                                className="rounded-xl" />
-                        </figure>
-                        <div className="card-body items-center text-center">
-                            <h2 className="card-title">Card Title</h2>
-                            <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
-                            <div className="card-actions">
-                                <button className="btn btn-primary">Buy Now</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="card  shadow-sm">
-                        <figure className="px-10 pt-10">
-                            <img
-                                src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                                alt="Shoes"
-                                className="rounded-xl" />
-                        </figure>
-                        <div className="card-body items-center text-center">
-                            <h2 className="card-title">Card Title</h2>
-                            <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
-                            <div className="card-actions">
-                                <button className="btn btn-primary">Buy Now</button>
-                            </div>
-                        </div>
-                    </div>
+                    </div>)}
+
+
                 </div>
             </div>
         </div>
