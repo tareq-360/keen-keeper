@@ -6,6 +6,12 @@ const Hero = async () => {
     // const res = await fetch("/data/contacts.json");
     // const contacts=  await res.json();
     // console.log(contacts);
+    let ontrack = 0;
+    let overdue = 0;
+    contacts.map(data => data.status === "on-track" ? ontrack++ : data.status === "overdue" ? overdue++ : " ")
+     
+
+    // console.log("on-track ", ontrack, " over Due ", overdue);
     return (
         <div className="bg-[#F8FAFC] text-black  h-full px-10 py-10">
             <div className=" text-center space-y-5 py-5">
@@ -24,11 +30,11 @@ const Hero = async () => {
                     <p className=" text-sm">Total Friend</p>
                 </div >
                 <div className=" bg-[#FFFFFF] w-40 h-25 flex flex-col items-center justify-center p-3">
-                    <h3>03</h3>
+                    <h3>{ontrack}</h3>
                     <p className=" text-sm">On Track</p>
                 </div>
                 <div className=" bg-[#FFFFFF] w-40 h-25 flex flex-col items-center justify-center p-3">
-                    <h3>06</h3>
+                    <h3>{overdue}</h3>
                     <p className=" text-sm">Need Attention</p>
                 </div>
                 <div className=" bg-[#FFFFFF] w-40 h-25 flex flex-col items-center justify-center p-3">
@@ -55,8 +61,6 @@ const Hero = async () => {
                                 </div>
                             </div>
                         </div>)}
-
-
                     </div>
                 </Link>
             </div>

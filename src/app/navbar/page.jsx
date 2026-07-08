@@ -1,48 +1,13 @@
 'use client'
 import Link from "next/link";
-// import { ChartSpline, Clock1, Clock3, House } from "lucide-react";
-// import Image from "next/image";
-
-
-// const Navbar = () => {
-//     return (
-
-//             <div className="navbar shadow-sm px-5 bg-slate-100">
-//                 <div className="navbar-start">
-//                     <Image src="/assets/logo.png" alt="Logo" width={100} height={50}>
-
-//                     </Image>
-//                 </div>
-
-//                 <div className="navbar-end  gap-2">
-//                     <div className="btn bg-[#244D3F]">
-//                         <House />
-//                         <span>Home</span>
-//                     </div>
-//                     <div className="btn btn-outline text-base-100">
-//                         <Clock3 />
-//                         <a>Timeline</a>
-//                     </div>
-//                     <div className="btn btn-outline text-base-100">
-//                         <ChartSpline />
-//                         <a>Stats</a>
-//                     </div>
-//                 </div>
-//             </div>
-
-//     );
-// };
-
-// export default Navbar;
-
-
-
-
 import { useState } from "react";
 import { ChartSpline, Clock3, House, Menu, X } from "lucide-react";
 import Image from "next/image";
-
+import { usePathname } from "next/navigation";
 const Navbar = () => {
+  const pathname= usePathname();
+  const isActive= (path) => pathname === path;
+  console.log(isActive);
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -55,20 +20,20 @@ const Navbar = () => {
       {/* Desktop Navigation */}
       <div className="hidden md:flex navbar-end gap-2">
         <Link href="/">
-          <button className="btn bg-[#244D3F] text-white border-none hover:bg-[#1b3a2f]">
+          <button className={`${isActive("/")?"bg-[#244D3F]  text-white":" btn-outline text-black"} btn hover:bg-[#1b3a2f]`}>
             <House size={18} />
             <span>Home</span>
           </button>
         </Link>
         <Link href="/timeline">
-          <button className="btn btn-outline text-gray-700 hover:bg-gray-200">
+          <button className={`${isActive("/timeline")?"bg-[#244D3F]  text-white":" btn-outline text-black"} btn hover:bg-[#1b3a2f]`}>
             <Clock3 size={18} />
             <span>Timeline</span>
           </button>
         </Link>
 
         <Link href="/stats">
-          <button className="btn btn-outline text-gray-700 hover:bg-gray-200">
+          <button className={`${isActive("/stats")?"bg-[#244D3F]  text-white":" btn-outline text-black"} btn hover:bg-[#1b3a2f]`}>
             <ChartSpline size={18} />
             <span>Stats</span>
           </button>
@@ -91,14 +56,14 @@ const Navbar = () => {
         <div className="absolute top-full left-0 w-full bg-slate-100 shadow-md p-4 flex flex-col gap-3 md:hidden border-t border-slate-200">
 
           <Link href="/">
-            <button className="btn bg-[#244D3F] text-white w-full justify-start gap-3">
+            <button className={`btn ${isActive("/")? "bg-[#244D3F]":"bg-[#000f0a]"} text-white w-full justify-start gap-3`}>
               <House size={18} />
               <span>Home</span>
             </button>
           </Link>
 
           <Link href="/timeline">
-            <button className="btn btn-outline text-gray-700 w-full justify-start gap-3">
+            <button className={`btn ${isActive("/timeline")? "bg-[#244D3F]":"bg-[#000f0a]"} text-white w-full justify-start gap-3`}>
 
               <Clock3 size={18} />
               <span>Timeline</span>
@@ -106,7 +71,7 @@ const Navbar = () => {
             </button>
           </Link>
           <Link href="/stats">
-            <button className="btn btn-outline text-gray-700 w-full justify-start gap-3">
+            <button className={`btn ${isActive("/stats")? "bg-[#244D3F]":"bg-[#000f0a]"} text-white w-full justify-start gap-3`}>
               <ChartSpline size={18} />
               <span>Stats</span>
             </button>
