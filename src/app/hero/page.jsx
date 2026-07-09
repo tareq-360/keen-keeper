@@ -44,9 +44,10 @@ const Hero = async () => {
             </div>
             <div className="pt-10">
                 <h3>Friends</h3>
-                <Link href="/details">
+                
                     <div className="bg-[#F8FAFC] grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5">
                         {contacts.map(contact => <div key={contact.id} className="card   shadow-sm bg-[#ffffff]">
+                            <Link href={`/${contact.id}`}>
                             <figure className="px-10 pt-10">
                                 <Image className=" rounded-full" src={contact.picture} alt={contact.name} width={80} height={80}></Image>
                             </figure>
@@ -60,9 +61,10 @@ const Hero = async () => {
                                     <button className={`btn btn-sm rounded-2xl ${contact.status === "overdue" ? "bg-red-500" : contact.status === "on-track" ? " bg-green-700" : " bg-yellow-600"}`}>{contact.status}</button>
                                 </div>
                             </div>
+                            </Link>
                         </div>)}
                     </div>
-                </Link>
+                
             </div>
         </div>
     );

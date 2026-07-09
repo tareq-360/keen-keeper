@@ -1,11 +1,13 @@
 'use client'
 import { Archive, BellRing, MessageSquare, Phone, Trash2, Video } from "lucide-react";
 import Image from "next/image";
+import { useDebugValue, useState } from "react";
 import { toast } from "react-toastify";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Timeline from "../timeline/page";
 
-const Details = () => {
+const CardDetails = ({ detail }) => {
     const tostCall = () => {
         toast.success('Call Success');
     }
@@ -15,17 +17,39 @@ const Details = () => {
     const tostVideo = () => {
         toast.success('Video Call Success');
     }
-    return (
-        <div className=" flex flex-wrap justify-center py-10 bg-[#F8FAFC] text-black items-center ">
+    // date time
+    // const [checkInLog, setCheckInLog] = useState([]);
+    const checkIn = (actionType, nm) => {
+        const newDateTime = new Date();
+        const newDate = {
+            id: Date.now(),
+            name: nm,
+            action: actionType,
+            time: newDateTime.toLocaleTimeString(),
+            date: newDateTime.toLocaleDateString(),
+            fullTime: newDateTime.toISOString(),
+        }
+        const prevData=localStorage.getItem("timeLineData");
+        const currentData= prevData? JSON.parse(prevData) : [];
+        const updatedValue = ([...currentData, newDate]);
+        localStorage.setItem("timeLineData", JSON.stringify(updatedValue))
+        // setCheckInLog(updatedValue)
+        // const len = updatedValue.length;
+        //  console.log("State- ", updatedValue.length);
 
+    }
+//    console.log(localStorage.getItem("timeLineData"));
+    return (
+
+        <div className=" flex flex-wrap justify-center py-10 bg-[#F8FAFC] text-black items-center ">
             {/* Left div */}
             <div className=" text-center p-5 rounded-md">
                 <div className="bg-[#ffffff] p-5 px-10 space-y-2 mb-3">
-                    <Image className=" rounded-full mx-auto" src="https://i.ibb.co.com/Ywp83WX/image.jpg" alt="Profile image" width={80} height={80}></Image>
-                    <h3 className="text-2xl pt-2">Name Here</h3>
-                    <p className=" bg-red-400 rounded-2xl">Status</p>
-                    <p className=" bg-blue-400 rounded-2xl">Tags</p>
-                    <span className="text-sm">Lorem ipsum dolor sit amet <br></br> consectetur adi</span>
+                    <Image className=" rounded-full mx-auto" src={detail.picture} alt={detail.name} width={80} height={80}></Image>
+                    <h3 className="text-2xl pt-2">{detail.name}</h3>
+                    <p className=" bg-red-400 rounded-2xl">{detail.status}</p>
+                    <p className="">{detail.tags.map(tag => <span className=" bg-slate-300 rounded-md p-1 mx-2" key={tag}>{tag}</span>)}</p>
+                    <span className="text-sm">{detail.bio}</span>
                 </div>
                 <div className="  space-y-2 ">
                     <div className="bg-[#ffffff] p-2 rounded-md flex items-center justify-center gap-2">
@@ -47,11 +71,11 @@ const Details = () => {
             <div className="space-y-5">
                 <div className=" flex gap-5 rounded-md">
                     <div className="bg-[#ffffff] p-5">
-                        <p>62</p>
+                        <p>{detail.days_since_contact}</p>
                         <p>Days Since Contact</p>
                     </div>
                     <div className="bg-[#ffffff] p-5">
-                        <p>30</p>
+                        <p>{detail.goal}</p>
                         <p>Goal (Days)</p>
                     </div>
                     <div className="bg-[#ffffff] p-5">
@@ -64,20 +88,20 @@ const Details = () => {
                         <p>Relationship Goal</p>.
                         <p className="btn">Edit</p>
                     </div>
-                    <p>Connect every<span className=" font-bold">30 Days</span></p>
+                    <p>Connect every <span className=" font-bold">{detail.goal} Days</span></p>
                 </div>
                 <div className="bg-[#ffffff] p-5 rounded-md space-y-5">
                     <p>Quick Check-in</p>
-                    <div className=" flex gap-5 justify-between">
-                        <div onClick={()=>{tostCall()}} className=" flex flex-col items-center justify-center">
+                    <div className=" flex gap-5 justify-between ">
+                        <div onClick={() => { tostCall(), checkIn("Call", detail.name) }} className=" flex flex-col items-center justify-center">
                             <Phone />
                             <p>Call</p>
                         </div>
-                        <div onClick={()=>{tostMessage()}} className=" flex flex-col items-center justify-center">
+                        <div onClick={() => { tostMessage(), checkIn("Text", detail.name) }} className=" flex flex-col items-center justify-center">
                             <MessageSquare />
                             <p>Text</p>
                         </div>
-                        <div onClick={()=>{tostVideo()}} className=" flex flex-col items-center justify-center">
+                        <div onClick={() => { tostVideo(), checkIn("Video Call", detail.name) }} className=" flex flex-col items-center justify-center">
                             <Video />
                             <p>Video</p>
                         </div>
@@ -89,4 +113,4 @@ const Details = () => {
     );
 };
 
-export default Details;
+export default CardDetails;
