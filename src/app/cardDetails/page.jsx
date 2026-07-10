@@ -8,6 +8,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import Timeline from "../timeline/page";
 
 const CardDetails = ({ detail }) => {
+    if (!detail) {
+        return <div className="p-10 text-center">Loading details...</div>;
+    }
     const tostCall = () => {
         toast.success('Call Success');
     }
