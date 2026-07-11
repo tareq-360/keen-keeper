@@ -15,11 +15,11 @@ const Timeline = () => {
     
     // console.log("TimelineData ", timelineData);
     return (
-        <div className=" max-w-7xl h-full bg-[#F8FAFC] text-black px-10 py-10 ">
-            <div >
+        <div className=" max-w-7xl h-full bg-[#F8FAFC] text-black px-10 py-10 mx-auto text-left">
+            <div className="">
                 <h1 className="text-2xl font-bold">Timeline</h1>
-                <div className="">
-                    <ul  className="flex gap-3 p-2">
+                <div className=" w-screen">
+                    <ul  className="flex flex-wrap gap-3 p-2 items-center">
                         <li className="btn px-5 hover:text-green-500"><Link href="/messagePage">Text</Link></li>
                         <li className="btn px-5 hover:text-green-500"><Link href="/audioCalls">Audio Calls</Link></li>
                         <li className="btn px-5 hover:text-green-500"><Link href="/videoLoges">Video Calls</Link></li>

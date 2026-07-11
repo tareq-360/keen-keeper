@@ -51,10 +51,10 @@ const CardDetails = ({ detail }) => {
         <div className=" flex flex-wrap justify-center py-10 bg-[#F8FAFC] text-black items-center ">
             {/* Left div */}
             <div className=" text-center p-5 rounded-md">
-                <div className="bg-[#ffffff] p-5 px-10 space-y-2 mb-3">
+                <div className="bg-[#ffffff] p-5 px-10 space-y-2 mb-3 text-center">
                     <Image className=" rounded-full mx-auto" src={detail.picture} alt={detail.name} width={80} height={80}></Image>
                     <h3 className="text-2xl pt-2">{detail.name}</h3>
-                    <p className=" bg-red-400 rounded-2xl">{detail.status}</p>
+                    <p className=" bg-red-400 rounded-2xl w-[30%] mx-auto">{detail.status}</p>
                     <p className="">{detail.tags.map(tag => <span className=" bg-slate-300 rounded-md p-1 mx-2" key={tag}>{tag}</span>)}</p>
                     <span className="text-sm">{detail.bio}</span>
                 </div>
