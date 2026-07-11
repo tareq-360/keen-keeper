@@ -100,15 +100,15 @@ const CardDetails = ({ detail }) => {
                 <div className="bg-[#ffffff] p-5 rounded-md space-y-5">
                     <p>Quick Check-in</p>
                     <div className=" flex gap-5 justify-between ">
-                        <div onClick={() => { tostCall(), checkIn("Call", detail.name) }} className=" flex flex-col items-center justify-center">
+                        <div onClick={() => { tostCall(), checkIn("Call", detail.name) }} className="transform transition-all duration-300 opacity-80 hover:opacity-100 hover:scale-102 hover:-translate-y-1 hover:text-green-700 font-bold cursor-pointer flex flex-col items-center justify-center bg-slate-100 rounded-md px-5 py-1 shadow-md">
                             <Phone />
                             <p>Call</p>
                         </div>
-                        <div onClick={() => { tostMessage(), checkIn("Text", detail.name) }} className=" flex flex-col items-center justify-center">
+                        <div onClick={() => { tostMessage(), checkIn("Text", detail.name) }} className="transform transition-all duration-300 opacity-80 hover:opacity-100 hover:scale-102 hover:-translate-y-1 hover:text-green-700 font-bold cursor-pointer flex flex-col items-center justify-center bg-slate-100 rounded-md px-5 py-1 shadow-md">
                             <MessageSquare />
                             <p>Text</p>
                         </div>
-                        <div onClick={() => { tostVideo(), checkIn("Video Call", detail.name) }} className=" flex flex-col items-center justify-center">
+                        <div onClick={() => { tostVideo(), checkIn("Video Call", detail.name) }} className="transform transition-all duration-300 opacity-80 hover:opacity-100 hover:scale-102 hover:-translate-y-1 hover:text-green-700 font-bold cursor-pointer flex flex-col items-center justify-center bg-slate-100 rounded-md px-5 py-1 shadow-md">
                             <Video />
                             <p>Video</p>
                         </div>

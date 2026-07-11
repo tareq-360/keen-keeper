@@ -6,7 +6,7 @@ const AppContext = createContext();
 export const AppProvider = ({ children }) => {
     const [timelineData, setTimelineData] = useState([]);
 
-    // ব্রাউজারে প্রথমবার লোড হওয়ার সময় localStorage থেকে ডাটা নেওয়া
+    
     useEffect(() => {
         const prevData = localStorage.getItem("timeLineData");
         if (prevData) {
@@ -14,7 +14,7 @@ export const AppProvider = ({ children }) => {
         }
     }, []);
 
-    // আপনার checkIn ফাংশনটি এখন গ্লোবাল
+    
     const checkIn = (actionType, nm) => {
         const newDateTime = new Date();
         const newDate = {
@@ -26,13 +26,13 @@ export const AppProvider = ({ children }) => {
             fullTime: newDateTime.toISOString(),
         };
 
-        // ১. নতুন ডাটা সহ অ্যারে তৈরি
+        
         const updatedValue = [...timelineData, newDate];
         
-        // ২. গ্লোবাল স্টেট আপডেট (এর ফলে সব কম্পোনেন্ট সাথে সাথে আপডেট হবে)
+        
         setTimelineData(updatedValue);
         
-        // ৩. localStorage-এ সেভ করা
+        
         localStorage.setItem("timeLineData", JSON.stringify(updatedValue));
     };
 
