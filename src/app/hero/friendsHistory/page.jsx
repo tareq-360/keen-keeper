@@ -1,10 +1,12 @@
-
+'use client'
+import { useGlobalContext } from "@/context/GlobalContext";
 import contacts from '../../../../public/data/contacts.json'
 let ontrack = 0;
     let overdue = 0;
     contacts.map(data => data.status === "on-track" ? ontrack++ : data.status === "overdue" ? overdue++ : " ")
      
-const FriendsHistory = ({timelineData}) => {
+const FriendsHistory = () => {
+    const {timelineData}=useGlobalContext();
     return (
         <div className=" grid grid-cols-1 md:grid-cols-3  lg:grid-cols-4 text-center justify-items-center pt-5 gap-5">
             <div className=" bg-[#FFFFFF] w-40 h-25 flex flex-col items-center justify-center p-3" >

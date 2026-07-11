@@ -1,13 +1,13 @@
-'use client'
+
 import Link from "next/link";
 import { Plus } from "lucide-react";
 import contacts from '../../../public/data/contacts.json';
 import Image from "next/image";
-import { useGlobalContext } from "@/context/GlobalContext";
+
 import FriendsSecton from "./friends/page";
 import FriendsHistory from "./friendsHistory/page";
 const Hero = () => {
-    const {timelineData}=useGlobalContext();
+    
     return (
         
         <div className="bg-[#F8FAFC] text-black  h-full px-10 py-10">
@@ -21,7 +21,7 @@ const Hero = () => {
                 </p>
                 <button className="btn bg-[#244D3F]">+Add a Friend</button>
             </div>
-            <FriendsHistory timelineData={timelineData}></FriendsHistory>
+            <FriendsHistory ></FriendsHistory>
             <FriendsSecton></FriendsSecton>
         </div>
     );
