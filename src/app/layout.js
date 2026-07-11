@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "./navbar/page";
 import Hero from "./hero/page";
 import Footer from "./footer/page";
+import { AppProvider } from "@/context/GlobalContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,11 +27,14 @@ export default function RootLayout({ children }) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <Navbar></Navbar>
-        {/* <Hero></Hero> */}
-        {children}
-        <Footer></Footer>
-        </body>
+        <AppProvider>
+          <Navbar></Navbar>
+          {/* <Hero></Hero> */}
+          {children}
+          <Footer></Footer>
+        </AppProvider>
+      </body>
+
     </html>
   );
 }

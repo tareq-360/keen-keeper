@@ -14,7 +14,7 @@ const Navbar = () => {
     <nav className="navbar shadow-sm px-5 bg-slate-100 relative z-50">
       {/* Brand Logo */}
       <div className="navbar-start">
-        <Image src="/assets/logo.png" alt="Logo" width={100} height={50} priority />
+        <Image src="/assets/logo.png" alt="Logo" width={100} height={20}  />
       </div>
 
       {/* Desktop Navigation */}

@@ -5,9 +5,11 @@ import { useDebugValue, useState } from "react";
 import { toast } from "react-toastify";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useGlobalContext } from "@/context/GlobalContext";
 import Timeline from "../timeline/page";
 
 const CardDetails = ({ detail }) => {
+    const { checkIn } = useGlobalContext();
     if (!detail) {
         return <div className="p-10 text-center">Loading details...</div>;
     }
@@ -22,26 +24,28 @@ const CardDetails = ({ detail }) => {
     }
     // date time
     // const [checkInLog, setCheckInLog] = useState([]);
-    const checkIn = (actionType, nm) => {
-        const newDateTime = new Date();
-        const newDate = {
-            id: Date.now(),
-            name: nm,
-            action: actionType,
-            time: newDateTime.toLocaleTimeString(),
-            date: newDateTime.toLocaleDateString(),
-            fullTime: newDateTime.toISOString(),
-        }
-        const prevData=localStorage.getItem("timeLineData");
-        const currentData= prevData? JSON.parse(prevData) : [];
-        const updatedValue = ([...currentData, newDate]);
-        localStorage.setItem("timeLineData", JSON.stringify(updatedValue))
-        // setCheckInLog(updatedValue)
-        // const len = updatedValue.length;
-        //  console.log("State- ", updatedValue.length);
+    // const checkIn = (actionType, nm) => {
+    //     const newDateTime = new Date();
+    //     const newDate = {
+    //         id: Date.now(),
+    //         name: nm,
+    //         action: actionType,
+    //         time: newDateTime.toLocaleTimeString(),
+    //         date: newDateTime.toLocaleDateString(),
+    //         fullTime: newDateTime.toISOString(),
+    //     }
+    //     const prevData=localStorage.getItem("timeLineData");
+    //     const currentData= prevData? JSON.parse(prevData) : [];
+    //     const updatedValue = ([...currentData, newDate]);
+    //     localStorage.setItem("timeLineData", JSON.stringify(updatedValue))
+    //     // setCheckInLog(updatedValue)
+    //     // const len = updatedValue.length;
+    //     //  console.log("State- ", updatedValue.length);
 
-    }
-//    console.log(localStorage.getItem("timeLineData"));
+    // }
+    //    console.log(localStorage.getItem("timeLineData"));
+
+    
     return (
 
         <div className=" flex flex-wrap justify-center py-10 bg-[#F8FAFC] text-black items-center ">
