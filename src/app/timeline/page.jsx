@@ -15,7 +15,7 @@ const Timeline = () => {
     
     // console.log("TimelineData ", timelineData);
     return (
-        <div className=" max-w-7xl h-full bg-[#F8FAFC] text-black px-10 py-10 mx-auto text-left">
+        <div className=" w-screen h-full bg-[#F8FAFC] text-black px-10 py-10 mx-auto text-left">
             <div className="">
                 <h1 className="text-2xl font-bold">Timeline</h1>
                 <div className=" w-screen">
